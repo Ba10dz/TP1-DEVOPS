@@ -1,15 +1,12 @@
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ArticleTest {
 
     @Test
     void creerArticleValideDoitFonctionner() {
-        // Arranger & Agir
         Article article = new Article("REF-001", "Cahier", 3.50);
 
-        // Affirmer
         assertEquals("REF-001", article.getReference());
         assertEquals("Cahier", article.getNom());
         assertEquals(3.50, article.getPrix(), 0.001);
@@ -24,26 +21,27 @@ class ArticleTest {
 
     @Test
     void referenceNulleDoitLeverException() {
-        assertThrows(IllegalArgumentException.class, () ->
-                new Article(null, "Règle", 1.0));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Article(null, "Règle", 1.0));
     }
 
     @Test
     void nomVideDoitLeverException() {
-        assertThrows(IllegalArgumentException.class, () ->
-                new Article("REF-001", "", 1.0));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Article("REF-001", "", 1.0));
     }
 
     @Test
     void prixNegatifAlaCreationDoitLeverException() {
-        assertThrows(IllegalArgumentException.class, () ->
-                new Article("REF-001", "X", -1.0));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Article("REF-001", "X", -1.0));
     }
 
     @Test
     void setPrixNegatifDoitLeverException() {
-        Article article = new Article("REF-001", "Stylo", 1.50);
-        assertThrows(IllegalArgumentException.class, () ->
-                article.setPrix(-5.0));
+        Article article = new Article("REF-003", "Stylo", 2.00);
+
+        assertThrows(IllegalArgumentException.class,
+                () -> article.setPrix(-5.0));
     }
 }
