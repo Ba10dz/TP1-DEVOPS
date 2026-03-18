@@ -9,10 +9,10 @@ public class ServiceCommande {
         if (identifiantClient == null || identifiantClient.isBlank())
             throw new IllegalArgumentException("L'identifiant client est invalide");
         for (LigneCommande ligne : panier.getLignes()) {
-            int stockDisponible = depotStock.getStock(ligne.article().getReference());
-            if (stockDisponible < ligne.quantite())
+            int stockDisponible = depotStock.getStock(ligne.getArticle().getReference());
+            if (stockDisponible < ligne.getQuantite())
                 throw new StockInsuffisantException(
-                        "Stock insuffisant pour : " + ligne.article().getNom());
+                        "Stock insuffisant pour : " + ligne.getArticle().getNom());
         }
         return new Commande(identifiantClient, panier.calculerTotal(), LocalDateTime.now());
     }
