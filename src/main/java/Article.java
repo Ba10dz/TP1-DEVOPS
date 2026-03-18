@@ -1,4 +1,3 @@
-
 public class Article {
     private final String reference;
     private final String nom;
