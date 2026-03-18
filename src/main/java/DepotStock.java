@@ -1,4 +1,4 @@
-// Interface du dépôt de stock (à implémenter en test)
+import java.time.LocalDateTime;
 public interface DepotStock {
     int getStock(String referenceArticle);
 }
